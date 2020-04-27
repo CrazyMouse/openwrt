@@ -14,6 +14,9 @@ sed -i 's/192.168.1.1/10.10.10.99/g' package/base-files/files/bin/config_generat
 # Modify Host Name
 sed -i '/uci commit system/i uci set system.@system[0].hostname=CrazyWrt'  package/lean/default-settings/files/zzz-default-settings
 
+# Modify Default Theme
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+
 # Update Luci theme argon
 cd package/lean  
 rm -rf luci-theme-argon  
