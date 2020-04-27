@@ -12,6 +12,6 @@
 sed -i 's/192.168.1.1/10.10.10.99/g' package/base-files/files/bin/config_generate
 
 # Update Luci theme argon
-cd lede/package/lean  
+cd package/lean  
 rm -rf luci-theme-argon  
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
