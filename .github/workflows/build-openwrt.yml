@@ -82,60 +82,60 @@ jobs:
         cd openwrt
         ../$DIY_P2_SH
 
-    - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
-      if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
+#     - name: SSH connection to Actions
+#       uses: P3TERX/debugger-action@master
+#       if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
 
-    - name: Download package
-      id: package
-      run: |
-        cd openwrt
-        make defconfig
-        make download -j8
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
+#     - name: Download package
+#       id: package
+#       run: |
+#         cd openwrt
+#         make defconfig
+#         make download -j8
+#         find dl -size -1024c -exec ls -l {} \;
+#         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Compile the firmware
-      id: compile
-      run: |
-        cd openwrt
-        echo -e "$(nproc) thread compile"
-        make -j$(nproc) || make -j1 || make -j1 V=s
-        echo "::set-output name=status::success"
+#     - name: Compile the firmware
+#       id: compile
+#       run: |
+#         cd openwrt
+#         echo -e "$(nproc) thread compile"
+#         make -j$(nproc) || make -j1 || make -j1 V=s
+#         echo "::set-output name=status::success"
 
-    - name: Upload bin directory
-      uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
-      with:
-        name: OpenWrt_bin
-        path: openwrt/bin
+#     - name: Upload bin directory
+#       uses: actions/upload-artifact@master
+#       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+#       with:
+#         name: OpenWrt_bin
+#         path: openwrt/bin
 
-    - name: Organize files
-      id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
-      run: |
-        cd openwrt/bin/targets/*/*
-        rm -rf packages
-        echo "::set-env name=FIRMWARE::$PWD"
-        echo "::set-output name=status::success"
+#     - name: Organize files
+#       id: organize
+#       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+#       run: |
+#         cd openwrt/bin/targets/*/*
+#         rm -rf packages
+#         echo "::set-env name=FIRMWARE::$PWD"
+#         echo "::set-output name=status::success"
 
-    - name: Upload firmware directory
-      uses: actions/upload-artifact@master
-      if: steps.organize.outputs.status == 'success' && !cancelled()
-      with:
-        name: OpenWrt_firmware
-        path: ${{ env.FIRMWARE }}
+#     - name: Upload firmware directory
+#       uses: actions/upload-artifact@master
+#       if: steps.organize.outputs.status == 'success' && !cancelled()
+#       with:
+#         name: OpenWrt_firmware
+#         path: ${{ env.FIRMWARE }}
 
-    - name: Upload firmware to cowtransfer
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
-      run: |
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
-        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
+#     - name: Upload firmware to cowtransfer
+#       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
+#       run: |
+#         curl -fsSL git.io/file-transfer | sh
+#         ./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
+#         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
 
-    - name: Upload firmware to WeTransfer
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
-      run: |
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
-        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+#     - name: Upload firmware to WeTransfer
+#       if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
+#       run: |
+#         curl -fsSL git.io/file-transfer | sh
+#         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
+#         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
