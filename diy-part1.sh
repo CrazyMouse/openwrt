@@ -15,7 +15,8 @@
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 
 # Modify Default Theme
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+sed -i '/uci commit luci/i set luci.themes.Argon=/luci-static/argon' package/lean/default-settings/files/zzz-default-settings
+sed -i '/uci commit luci/i set luci.main.mediaurlbase=/luci-static/argon' package/lean/default-settings/files/zzz-default-settings
 
 # DownLoad OpenClash
 mkdir package/luci-app-openclash
