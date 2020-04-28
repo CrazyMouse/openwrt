@@ -39,7 +39,7 @@ jobs:
 
     steps:
     - name: WeChat notification
-      run: curl https://sc.ftqq.com/${{ secrets.ServerChan }}.send?text=OpenWrt 开始编译
+      run: curl https://sc.ftqq.com/${{ secrets.ServerChan }}.send?text=OpenWrt开始编译
     - name: Checkout
       uses: actions/checkout@master
 
@@ -124,6 +124,6 @@ jobs:
         name: OpenWrt_firmware
         path: ${{ env.FIRMWARE }}
     - name: WeChat notification
-      run: curl https://sc.ftqq.com/${{ secrets.ServerChan }}.send?text=OpenWrt 编译完成
+      run: curl https://sc.ftqq.com/${{ secrets.ServerChan }}.send?text=OpenWrt编译完成
 
   
