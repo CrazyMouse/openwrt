@@ -118,7 +118,7 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        mkdir firmware && find openwrt/bin/targets/*/*/* -maxdepth 0  -name "*combined*"  | xargs -i mv -f {} ./firmware/
+        mkdir firmware && find openwrt/bin/targets/*/*/* -maxdepth 0  -name "*combined.img*"  | xargs -i mv -f {} ./firmware/
         cd firmware
         echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
