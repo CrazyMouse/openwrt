@@ -108,7 +108,7 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        mkdir firmware && find openwrt/bin/targets/*/*/* -maxdepth 0  -name "*combined.img*"  | xargs -i mv -f {} ./firmware/
+        mkdir firmware && find openwrt/bin/targets/*/*/* -maxdepth 0  -name "*ext4-combined.img*"  | xargs -i mv -f {} ./firmware/
         cd firmware
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
