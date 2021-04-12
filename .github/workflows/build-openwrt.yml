@@ -46,7 +46,7 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        args: OpenWrt开始编译.
+        args: OpenWrt Compile Start.
     - name: Checkout
       uses: actions/checkout@master
 
@@ -123,4 +123,4 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        args: OpenWrt编译完成.
+        args: OpenWrt Compile End ^_^
