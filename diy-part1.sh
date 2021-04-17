@@ -13,7 +13,7 @@
 
 # Lienol/openwrt-package
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
-echo 'src-git jerryk https://github.com/jerrykuku/openwrt-package'>>feeds.conf.default
+#echo 'src-git jerryk https://github.com/jerrykuku/openwrt-package'>>feeds.conf.default
 # Modify Default Theme
 sed -i '/uci commit luci/i\uci set luci.main.mediaurlbase=/luci-static/argon' package/lean/default-settings/files/zzz-default-settings
 
