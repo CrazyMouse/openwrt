@@ -2,8 +2,9 @@
 
 ## 版权：
 
-请随便享用，感谢[P3TERX](https://github.com/P3TERX/Actions-OpenWrt) 提供模版,基本上属于极简版的功能，保留了v2ray server 配合ddns用于随时回家接入内网，openclash用于看看外面的世界，frps用来做反向代理跳回不方便进入的内网
+请随便享用，感谢[P3TERX](https://github.com/P3TERX/Actions-OpenWrt) 提供模版,基本上属于极简版的功能，保留了v2ray server 配合ddns用于随时回家接入内网，openclash用于看看外面的世界。
 
+**不用fork我的仓库了自己编译，没必要，去[Actions](https://github.com/CrazyMouse/openwrt/actions)直接下载编译好的固件就行了**
 ## 修改功能列表：
 
 - [x] push代码自动编译
