@@ -10,7 +10,7 @@
 
 # fw876/helloworld
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
-echo "src-git helloworld https://github.com/fw876/helloworld.git" >> feeds.conf.default
+# echo "src-git helloworld https://github.com/fw876/helloworld.git" >> feeds.conf.default
 # Lienol/openwrt-package
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 #echo 'src-git jerryk https://github.com/jerrykuku/openwrt-package'>>feeds.conf.default
