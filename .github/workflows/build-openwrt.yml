@@ -16,8 +16,8 @@ on:
 #     paths:
 #       - '.config'
 #       - '*.sh'
-  schedule:
-    - cron: 0 18 * * 5
+#   schedule:
+#     - cron: 0 18 * * 5
 #  watch:
 #    types: started
 
