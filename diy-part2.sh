@@ -19,5 +19,5 @@ echo '/etc/openclash/' >> package/base-files/files/etc/sysupgrade.conf
 
 # Update Luci theme argon  
 rm -rf package/lean/luci-theme-argon  
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
+git clone  https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
 
